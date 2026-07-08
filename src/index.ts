@@ -1,3 +1,4 @@
+import {NativeModules} from 'react-native';
 import type { NativeNetworkMonitorSpec, StartOptions } from './specs/NativeNetworkMonitor';
 
 const MODULE_NAME = 'NetworkMonitorReactNative';
@@ -9,9 +10,7 @@ function missingNativeModuleError(): never {
 }
 
 function getNativeModule(): NativeNetworkMonitorSpec {
-  // Kept lightweight for scaffold; switch to TurboModuleRegistry in implementation phase.
-  const rn = require('react-native');
-  const nativeModule = rn.NativeModules?.[MODULE_NAME] as NativeNetworkMonitorSpec | undefined;
+  const nativeModule = NativeModules?.[MODULE_NAME] as NativeNetworkMonitorSpec | undefined;
   if (!nativeModule) missingNativeModuleError();
   return nativeModule;
 }
@@ -24,7 +23,12 @@ export async function stopNetworkMonitor(): Promise<void> {
   return getNativeModule().stop();
 }
 
+export async function sendTestRequest(url?: string): Promise<number> {
+  return getNativeModule().sendTestRequest(url);
+}
+
 export const NetworkMonitor = {
   start: startNetworkMonitor,
   stop: stopNetworkMonitor,
+  sendTestRequest,
 };

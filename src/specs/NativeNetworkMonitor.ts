@@ -6,4 +6,5 @@ export type StartOptions = {
 export interface NativeNetworkMonitorSpec {
   start(options?: StartOptions): Promise<void>;
   stop(): Promise<void>;
+  sendTestRequest(url?: string): Promise<number>;
 }
