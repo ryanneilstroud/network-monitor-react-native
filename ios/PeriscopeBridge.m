@@ -1,6 +1,6 @@
 #import <React/RCTBridgeModule.h>
 
-@interface RCT_EXTERN_MODULE(NetworkMonitorReactNative, NSObject)
+@interface RCT_EXTERN_MODULE(PeriscopeBridge, NSObject)
 
 RCT_EXTERN_METHOD(
   start:(NSDictionary * _Nullable)options

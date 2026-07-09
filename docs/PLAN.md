@@ -1,8 +1,8 @@
-# Plan: `@ryanneilstroud/network-monitor-react-native`
+# Plan: `@ryanneilstroud/periscope-react-native`
 
 ## Product objective
 
-Deliver an RN package that bridges `NetworkMonitorKit` with minimal setup friction and broad compatibility.
+Deliver an RN package that bridges Periscope with minimal setup friction and broad compatibility.
 
 ## Non-goals (initial release)
 
@@ -26,7 +26,7 @@ Deliver an RN package that bridges `NetworkMonitorKit` with minimal setup fricti
 
 1. Build and release `NetworkMonitorKit.xcframework` from the Swift package pipeline.
 2. Reference that binary from this RN package’s podspec (`vendored_frameworks`).
-3. Expose minimal RN native module methods (`start`, `stop`, `setHost`, `injectConfiguration`).
+3. Expose minimal RN native module methods (`capture`, `stop`, `sendTestRequest`).
 4. Let RN autolinking + CocoaPods install everything automatically.
 
 Why: this keeps app setup in the normal RN install flow and avoids app-level SPM friction.
@@ -83,6 +83,6 @@ Exit criteria: repeatable release and clean install docs.
 ## Definition of done for v0.1.0
 
 1. `npm install` + `npx pod-install` succeeds in clean RN app.
-2. `NetworkMonitor.start(...)` works on simulator/device.
+2. `Periscope.capture(...)` works on simulator/device.
 3. No manual app SPM steps required.
 4. README includes exact install and troubleshooting steps.

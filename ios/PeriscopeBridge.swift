@@ -2,21 +2,22 @@ import Foundation
 import NetworkMonitorKit
 import React
 
-@objc(NetworkMonitorReactNative)
-final class NetworkMonitorReactNative: NSObject {
+@objc(PeriscopeBridge)
+final class PeriscopeBridge: NSObject {
     @objc
     static func requiresMainQueueSetup() -> Bool {
         false
     }
 
-    @objc(start:resolve:reject:)
-    func start(
+    @objc(capture:resolve:reject:)
+    func capture(
         _ options: NSDictionary?,
         resolve: @escaping RCTPromiseResolveBlock,
         reject: @escaping RCTPromiseRejectBlock
     ) {
-        let host = options?["host"] as? String ?? "localhost"
-        let requestedPort = options?["port"] as? NSNumber
+        let receiver = options?["receiver"] as? NSDictionary
+        let host = receiver?["host"] as? String ?? "localhost"
+        let requestedPort = receiver?["port"] as? NSNumber
         let portValue = requestedPort?.intValue ?? 61337
 
         guard (1...65535).contains(portValue) else {
@@ -24,7 +25,7 @@ final class NetworkMonitorReactNative: NSObject {
             return
         }
 
-        NetworkMonitor.start(host: host, port: UInt16(portValue))
+        NetworkMonitor.capture(receiver: .init(host: host, port: UInt16(portValue)))
         resolve(nil)
     }
 

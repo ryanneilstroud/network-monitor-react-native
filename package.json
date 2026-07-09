@@ -1,7 +1,7 @@
 {
-  "name": "@ryanneilstroud/network-monitor-react-native",
+  "name": "@ryanneilstroud/periscope-react-native",
   "version": "0.2.0",
-  "description": "React Native bridge package for NetworkMonitorKit",
+  "description": "React Native bridge package for Periscope",
   "main": "src/index.ts",
   "module": "src/index.ts",
   "types": "src/index.ts",
@@ -27,7 +27,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ryanneilstroud/network-monitor-react-native.git"
+    "url": "git+https://github.com/ryanneilstroud/periscope-react-native.git"
   },
   "license": "MIT",
   "peerDependencies": {

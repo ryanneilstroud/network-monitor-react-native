@@ -1,6 +1,6 @@
-# @ryanneilstroud/network-monitor-react-native
+# @ryanneilstroud/periscope-react-native
 
-React Native iOS bridge for `NetworkMonitorKit` with low-friction installation.
+React Native bridge for `Periscope` with low-friction installation.
 
 ## Status
 
@@ -8,7 +8,7 @@ Implemented for iOS via React Native native module + CocoaPods autolinking.
 
 ## Install
 
-1. `npm install @ryanneilstroud/network-monitor-react-native`
+1. `npm install @ryanneilstroud/periscope-react-native`
 2. `npx pod-install`
 3. Rebuild the iOS app
 
@@ -17,24 +17,26 @@ No app-side SPM setup is required.
 ## Usage
 
 ```ts
-import { NetworkMonitor } from '@ryanneilstroud/network-monitor-react-native';
+import { Periscope } from '@ryanneilstroud/periscope-react-native';
 
-await NetworkMonitor.start({
-  host: '192.168.1.100', // your Mac running NetworkMonitorViewer
-  port: 61337,
+await Periscope.capture({
+  receiver: {
+    host: '192.168.1.100', // your Mac running Periscope Viewer
+    port: 61337,
+  },
 });
 ```
 
 Stop monitoring:
 
 ```ts
-await NetworkMonitor.stop();
+await Periscope.stop();
 ```
 
 You can also call named exports:
 
 ```ts
-import { startNetworkMonitor, stopNetworkMonitor } from '@ryanneilstroud/network-monitor-react-native';
+import { capture, stop } from '@ryanneilstroud/periscope-react-native';
 ```
 
 ## Platform support

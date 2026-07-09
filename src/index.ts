@@ -1,7 +1,7 @@
 import {NativeModules} from 'react-native';
-import type { NativeNetworkMonitorSpec, StartOptions } from './specs/NativeNetworkMonitor';
+import type { CaptureOptions, NativePeriscopeSpec } from './specs/NativeNetworkMonitor';
 
-const MODULE_NAME = 'NetworkMonitorReactNative';
+const MODULE_NAME = 'PeriscopeBridge';
 
 function missingNativeModuleError(): never {
   throw new Error(
@@ -9,17 +9,17 @@ function missingNativeModuleError(): never {
   );
 }
 
-function getNativeModule(): NativeNetworkMonitorSpec {
-  const nativeModule = NativeModules?.[MODULE_NAME] as NativeNetworkMonitorSpec | undefined;
+function getNativeModule(): NativePeriscopeSpec {
+  const nativeModule = NativeModules?.[MODULE_NAME] as NativePeriscopeSpec | undefined;
   if (!nativeModule) missingNativeModuleError();
   return nativeModule;
 }
 
-export async function startNetworkMonitor(options?: StartOptions): Promise<void> {
-  return getNativeModule().start(options);
+export async function capture(options?: CaptureOptions): Promise<void> {
+  return getNativeModule().capture(options);
 }
 
-export async function stopNetworkMonitor(): Promise<void> {
+export async function stop(): Promise<void> {
   return getNativeModule().stop();
 }
 
@@ -27,8 +27,10 @@ export async function sendTestRequest(url?: string): Promise<number> {
   return getNativeModule().sendTestRequest(url);
 }
 
-export const NetworkMonitor = {
-  start: startNetworkMonitor,
-  stop: stopNetworkMonitor,
+export const Periscope = {
+  capture,
+  stop,
   sendTestRequest,
 };
+
+export const NetworkMonitor = Periscope;
