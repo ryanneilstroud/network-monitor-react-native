@@ -1,23 +1,23 @@
 # @ryanneilstroud/periscope-react-native
 
-React Native bridge for `Periscope` with low-friction installation.
+React Native bridge for `PeriscopeKit` (iOS) and `PeriscopeAndroid` (Android) with low-friction installation.
 
 ## Status
 
-Implemented for iOS via React Native native module + CocoaPods autolinking.
+Implemented for iOS and Android via React Native native module autolinking.
 
 ## Install
 
 1. `npm install @ryanneilstroud/periscope-react-native`
-2. `npx pod-install`
-3. Rebuild the iOS app
+2. `npx pod-install` (iOS)
+3. Rebuild your app
 
 No app-side SPM setup is required.
 
 ## Usage
 
 ```ts
-import { Periscope } from '@ryanneilstroud/periscope-react-native';
+import {Periscope} from '@ryanneilstroud/periscope-react-native';
 
 await Periscope.capture({
   receiver: {
@@ -36,10 +36,10 @@ await Periscope.stop();
 You can also call named exports:
 
 ```ts
-import { capture, stop } from '@ryanneilstroud/periscope-react-native';
+import {capture, stop} from '@ryanneilstroud/periscope-react-native';
 ```
 
 ## Platform support
 
 - iOS: supported
-- Android: not implemented yet
+- Android: supported

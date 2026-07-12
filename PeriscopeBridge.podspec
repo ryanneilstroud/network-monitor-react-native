@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name         = "PeriscopeBridge"
   s.version      = "0.2.0"
-  s.summary      = "React Native bridge for Periscope"
-  s.description  = "Low-friction React Native iOS bridge that depends on Periscope."
+  s.summary      = "React Native bridge for PeriscopeKit"
+  s.description  = "Low-friction React Native bridge that depends on PeriscopeKit."
   s.homepage     = "https://github.com/ryanneilstroud/periscope-react-native"
   s.license      = { :type => "MIT" }
   s.author       = { "ryanneilstroud" => "ryanneilstroud@users.noreply.github.com" }
@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = { "DEFINES_MODULE" => "YES" }
 
   s.dependency "React-Core"
-  s.dependency "NetworkMonitorKit"
+  s.dependency "PeriscopeKit", "0.5.1"
 end

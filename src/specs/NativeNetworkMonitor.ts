@@ -3,7 +3,7 @@ export type ReceiverOptions = {
   port?: number;
 };
 
-export type CaptureOptions = {
+export type CaptureOptions = ReceiverOptions & {
   receiver?: ReceiverOptions;
 };
 

@@ -1,5 +1,5 @@
 import Foundation
-import NetworkMonitorKit
+import PeriscopeKit
 import React
 
 @objc(PeriscopeBridge)
@@ -16,7 +16,7 @@ final class PeriscopeBridge: NSObject {
         reject: @escaping RCTPromiseRejectBlock
     ) {
         let receiver = options?["receiver"] as? NSDictionary
-        let host = receiver?["host"] as? String ?? "localhost"
+        let host = (receiver?["host"] as? String)?.trimmingCharacters(in: .whitespacesAndNewlines)
         let requestedPort = receiver?["port"] as? NSNumber
         let portValue = requestedPort?.intValue ?? 61337
 
@@ -25,7 +25,14 @@ final class PeriscopeBridge: NSObject {
             return
         }
 
-        NetworkMonitor.capture(receiver: .init(host: host, port: UInt16(portValue)))
+        let receiver: Periscope.Receiver
+        if let host, !host.isEmpty {
+            receiver = .device(host: host, port: portValue)
+        } else {
+            receiver = .simulator(port: portValue)
+        }
+
+        Periscope.capture(for: receiver)
         resolve(nil)
     }
 
@@ -34,7 +41,7 @@ final class PeriscopeBridge: NSObject {
         _ resolve: @escaping RCTPromiseResolveBlock,
         reject: @escaping RCTPromiseRejectBlock
     ) {
-        NetworkMonitor.stop()
+        Periscope.stop()
         resolve(nil)
     }
 
@@ -55,7 +62,7 @@ final class PeriscopeBridge: NSObject {
         }
 
         let configuration = URLSessionConfiguration.default
-        NetworkMonitor.inject(into: configuration)
+        Periscope.inject(into: configuration)
         let session = URLSession(configuration: configuration)
 
         session.dataTask(with: url) { _, response, error in
