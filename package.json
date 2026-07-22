@@ -1,6 +1,6 @@
 {
   "name": "@ryanneilstroud/periscope-react-native",
-  "version": "0.5.5",
+  "version": "1.2.0-beta.1",
   "description": "React Native bridge package for PeriscopeKit and PeriscopeAndroid",
   "main": "src/index.ts",
   "module": "src/index.ts",
@@ -11,7 +11,8 @@
     "src",
     "lib",
     "ios",
-    "android",
+    "android/build.gradle",
+    "android/src",
     "*.podspec"
   ],
   "scripts": {
